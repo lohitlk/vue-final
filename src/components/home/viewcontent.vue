@@ -43,7 +43,8 @@
 <script>
 
 export default {
-  name: "getUserById",
+  name: "viewContent",
+
   data() {
     return {
       userDetails:'',

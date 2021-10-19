@@ -29,7 +29,7 @@ export default {
   methods: {
     getFunction(Userele) {
       this.$router.push({
-        name: "getUserById",
+        name: "viewContent",
         params: { id: Userele.id, details: JSON.stringify(Userele) },
       });
     },

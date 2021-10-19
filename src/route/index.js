@@ -20,7 +20,7 @@ const routes = [
     },
     {
         path: '/viewcontent/:id',
-        name: 'getUserById',
+        name: 'viewContent',
         component: ()=>import(/*webpackChunkName="Details"*/"@/components/home/viewcontent.vue")
     },
 
