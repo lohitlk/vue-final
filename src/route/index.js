@@ -21,8 +21,12 @@ const routes = [
     {
         path: '/viewcontent/:id',
         name: 'viewContent',
-        component: ()=>import(/*webpackChunkName="Details"*/"@/components/home/viewcontent.vue")
+        component: () => import(/*webpackChunkName="Details"*/"@/components/home/viewcontent.vue")
     },
+    { 
+        path: "/cart", 
+        component: () => import(/*webpackChunkName="Details"*/"@/components/cart/Cart.vue") 
+    }
 
 
 ]

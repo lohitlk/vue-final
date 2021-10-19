@@ -21,8 +21,8 @@
       </p> -->
       <div class="butt">
         <button
-          @click="removeFromCart(userDetails.id)"
           v-if="isInCart(userDetails.id)"
+          @click="removeFromCart(userDetails.id)"
         >
           remove from cart
         </button>
@@ -41,16 +41,14 @@
 </template>
 
 <script>
-
 export default {
   name: "viewContent",
 
   data() {
     return {
-      userDetails:'',
+      userDetails: "",
       cart: [],
-      items: []
-      
+      items: [],
     };
   },
   created() {
@@ -60,36 +58,51 @@ export default {
       : null;
     console.log("userdetails||", this.userDetails);
     id1 = this.userDetails.id;
-    this.items = Object.freeze(this.userDetails)
-    console.log("items||",this.items)
+    this.items = Object.freeze(this.userDetails);
+    console.log("items||", this.items);
     console.log("id||", id1);
+  },
+  computed: {
+    // isInCart(itemId) {
+    //   if (!localStorage.getItem("cart")) {
+    //     localStorage.setItem("cart", JSON.stringify([]));
+    //   }
+    //   console.log("this||", this.cart);
+    //   console.log(itemId);
+    //   const cartItem = this.cart.find(({ id }) => id == itemId);
+    //   console.log("this1||", cartItem);
+    //   return Boolean(cartItem);
+    // },
   },
   methods: {
     isInCart(itemId) {
       if (!localStorage.getItem("cart")) {
         localStorage.setItem("cart", JSON.stringify([]));
       }
-      console.log("this||",this.cart)
-      // console.log(this.cart.find( 2 == itemId))
-      const cartItem = this.cart.find(({ id }) => id == itemId );
-      console.log("this1||",cartItem)
+
+      console.log(itemId);
+      const cartItem = this.cart.find(({id}) => id == itemId);
       return Boolean(cartItem);
     },
     addToCart() {
-      const item = this.items.id
-      console.log(localStorage.getItem("cart"))
+      const item = this.items.id;
+      const itemname = this.items.title;
+      const itemimage = this.items.image;
+      const itemprice = this.items.price;
+
+      console.log(localStorage.getItem("cart"));
       if (!localStorage.getItem("cart")) {
         localStorage.setItem("cart", JSON.stringify([]));
       }
       const cartItems = JSON.parse(localStorage.getItem("cart"));
-      cartItems.push(item);
+      cartItems.push({"id":item, "name":itemname, "image":itemimage, "price": itemprice});
       localStorage.setItem("cart", JSON.stringify(cartItems));
       this.cart = JSON.parse(localStorage.getItem("cart"));
-      console.log("cart||", this.cart)
+      console.log("cart||", this.cart);
     },
     removeFromCart(itemId) {
       const cartItems = JSON.parse(localStorage.getItem("cart"));
-      const index = cartItems.findIndex(({ id }) => id === itemId);
+      const index = cartItems.findIndex((id) => id === itemId);
       cartItems.splice(index, 1);
       localStorage.setItem("cart", JSON.stringify(cartItems));
       this.cart = JSON.parse(localStorage.getItem("cart"));
