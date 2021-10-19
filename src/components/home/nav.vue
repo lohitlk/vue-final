@@ -1,7 +1,7 @@
 
  <template>
   <MDBNavbar expand="lg" light bg="light" container>
-    <MDBNavbarBrand>Shoping Mart</MDBNavbarBrand>
+    <MDBNavbarBrand @click="goHome()">Shoping Mart</MDBNavbarBrand>
     <MDBNavbarToggler
       @click="collapse1 = !collapse1"
       target="#navbarSupportedContent"
@@ -11,7 +11,7 @@
         
      
       </MDBNavbarNav>
-         <MDBBtn to="#" active>
+         <MDBBtn @click="goCart()" active>
              <img style="width:30px; height:30px" src="../../assets/shopping-cart.png" alt="">
         
         </MDBBtn>
@@ -63,6 +63,16 @@ export default {
         name: "home",
       });
     },
+    goHome(){
+      this.$router.push({
+        name: "home"
+      })
+    },
+    goCart(){
+         this.$router.push({
+        name: "Cart",
+      });
+    }
   },
 };
 </script>

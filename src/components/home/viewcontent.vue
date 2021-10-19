@@ -79,6 +79,9 @@ export default {
       if (!localStorage.getItem("cart")) {
         localStorage.setItem("cart", JSON.stringify([]));
       }
+      else{
+        this.cart = JSON.parse(localStorage.getItem("cart")); 
+      }
 
       console.log(itemId);
       const cartItem = this.cart.find(({id}) => id == itemId);
@@ -89,13 +92,14 @@ export default {
       const itemname = this.items.title;
       const itemimage = this.items.image;
       const itemprice = this.items.price;
+      const itemquantity = 0;
 
       console.log(localStorage.getItem("cart"));
       if (!localStorage.getItem("cart")) {
         localStorage.setItem("cart", JSON.stringify([]));
       }
       const cartItems = JSON.parse(localStorage.getItem("cart"));
-      cartItems.push({"id":item, "name":itemname, "image":itemimage, "price": itemprice});
+      cartItems.push({"id":item, "name":itemname, "image":itemimage, "total":0, "price": itemprice, "quantity": itemquantity,});
       localStorage.setItem("cart", JSON.stringify(cartItems));
       this.cart = JSON.parse(localStorage.getItem("cart"));
       console.log("cart||", this.cart);
